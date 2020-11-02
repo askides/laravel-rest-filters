@@ -2,6 +2,7 @@
 
 namespace ItsRennyMan\RestFilters;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Builder;
 
