@@ -43,9 +43,9 @@ In order to Filter, pass the parameters in the URI Querystring.
 ]
 ```
 
-#### And Done!! Cool Right?
+And Done. So Sexy So Fresh!
 
-### Available Filters
+## Available Filters
 
 #### Single Field Where
 
