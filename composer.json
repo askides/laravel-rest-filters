@@ -1,0 +1,26 @@
+{
+    "name": "itsrennyman/laravel-rest-filters",
+    "description": "Missing RESTFul API AutoFilters Provider for Laravel.",
+    "type": "library",
+    "require": {
+        "laravel/framework": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ItsRennyMan\\RestFilters\\": "src/"
+        }
+    },
+    "license": "Apache-2.0",
+    "authors": [{
+        "name": "itsrennyman",
+        "email": "renato.pozzi.dev@gmail.com"
+    }],
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ItsRennyMan\\RestFilters\\RestServiceProvider"
+            ]
+        }
+    }
+}
