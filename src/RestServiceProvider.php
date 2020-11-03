@@ -35,7 +35,8 @@ class RestServiceProvider extends ServiceProvider
                 if (Str::contains($value, ',')) {
                     $this->whereIn($field, Str::of($value)->explode(','));
                 } else {
-                    $this->where($field, '=', $value);
+                    empty($value) ?:
+                        $this->where($field, '=', $value);
                 }
             });
 
