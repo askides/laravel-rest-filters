@@ -60,7 +60,7 @@ class RestServiceProvider extends ServiceProvider
                 });
             }
 
-            // Embedding
+            // Embedding (Needs to add id field if filtered.)
             if (request()->filled('embed')) {
                 $fields = Str::of(request()->embed)->explode(',');
 
