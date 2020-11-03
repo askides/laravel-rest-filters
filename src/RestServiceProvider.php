@@ -42,7 +42,7 @@ class RestServiceProvider extends ServiceProvider
 
                     // Check has an extra attribute
                     if (Str::contains($value, ':')) {
-                        $attributeAndValue = Str::of($value)->explode(',');
+                        $attributeAndValue = Str::of($value)->explode(':');
                         
                         $this->where($field, $attributeAndValue[0], $attributeAndValue[1]);
                     } else {
