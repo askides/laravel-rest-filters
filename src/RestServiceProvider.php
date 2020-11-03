@@ -30,13 +30,24 @@ class RestServiceProvider extends ServiceProvider
             $query = request()->query->all();
 
             // Needs to exclude key items like "sort"
-            $fields = collect($query)->except(['sort', 'fields', 'embed'])->filter(function ($value, $field) {
+            collect($query)->except(['sort', 'fields', 'embed'])->each(function ($value, $field) {
                 // Check has Multiple Filters
                 if (Str::contains($value, ',')) {
                     $this->whereIn($field, Str::of($value)->explode(','));
                 } else {
-                    empty($value) ?:
+                    // Empty value. Skip.
+                    if (empty($value)) {
+                        return true;
+                    }
+
+                    // Check has an extra attribute
+                    if (Str::contains($value, ':')) {
+                        $attributeAndValue = Str::of($value)->explode(',');
+                        
+                        $this->where($field, $attributeAndValue[0], $attributeAndValue[1]);
+                    } else {
                         $this->where($field, '=', $value);
+                    }
                 }
             });
 
