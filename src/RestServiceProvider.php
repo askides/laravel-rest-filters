@@ -62,7 +62,7 @@ class RestServiceProvider extends ServiceProvider
 
             // Embedding
             if (request()->filled('embed')) {
-                $fields = Str::of(request()->sort)->explode(',');
+                $fields = Str::of(request()->embed)->explode(',');
 
                 $fields->each(function ($field) {
                     $this->with($field);
