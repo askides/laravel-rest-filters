@@ -26,29 +26,38 @@ class RestServiceProvider extends ServiceProvider
     public function boot()
     {
         Builder::macro('withRestFilters', function () {
+            // Model Instance
+            $model = $this->getModel();
             // Filtering
             $query = request()->query->all();
 
             // Needs to exclude key items like "sort"
-            collect($query)->except(['sort', 'fields', 'embed'])->each(function ($value, $field) {
-                // Check has Multiple Filters
-                if (Str::contains($value, ',')) {
-                    $this->whereIn($field, Str::of($value)->explode(','));
-                } else {
-                    // Empty value. Skip.
-                    if (empty($value)) {
-                        return true;
-                    }
-
-                    // Check has an extra attribute
-                    if (Str::contains($value, ':')) {
-                        $attributeAndValue = Str::of($value)->explode(':');
-                        
-                        $this->where($field, $attributeAndValue[0], $attributeAndValue[1]);
+            collect($query)->except(['sort', 'fields', 'embed', 'page'])
+                ->except($model->bannedFields ?: [])
+                ->each(function ($value, $field) use ($model) {
+                    // Check has Multiple Filters
+                    if (Str::contains($value, ',')) {
+                        $this->whereIn($field, Str::of($value)->explode(','));
                     } else {
-                        $this->where($field, '=', $value);
+                        // Empty value. Skip.
+                        if (empty($value)) {
+                            return true;
+                        }
+
+                        // Check has an extra attribute
+                        if (Str::contains($value, ':')) {
+                            $attributeAndValue = Str::of($value)->explode(':');
+                           
+                            // Check Banned Attributes
+                            if ($model->bannedAttributes && in_array($attributeAndValue[0], $model->bannedAttributes)) {
+                                return true;
+                            }
+
+                            $this->where($field, $attributeAndValue[0], $attributeAndValue[1]);
+                        } else {
+                            $this->where($field, '=', $value);
+                        }
                     }
-                }
             });
 
             // Selecting Fields
