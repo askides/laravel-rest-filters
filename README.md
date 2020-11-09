@@ -8,6 +8,7 @@ Table of Contents
 * [Quick Start](#quick-start)
 * [Basic Filters](#basic-filters)
 * [Advanced Filters](#advanced-filters)
+* [Ban Filters & Attributes](#ban-filters-&-attributes)
 * [Contribution](#contribution)
 
 ## Quick Start
@@ -375,6 +376,10 @@ If you need to do search, be sure to add the percentage '%' to your values.
   }
 ]
 ```
+
+## Ban Filters & Attributes
+
+// TODO
 
 ## Contribution
 
