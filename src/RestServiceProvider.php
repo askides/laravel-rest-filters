@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Builder;
 
+use ItsRennyMan\RestFilters\Helpers\Attribute;
+
 class RestServiceProvider extends ServiceProvider
 {
     /**
@@ -53,7 +55,15 @@ class RestServiceProvider extends ServiceProvider
                                 return true;
                             }
 
-                            $this->where($field, $attributeAndValue[0], $attributeAndValue[1]);
+                            // Replace Attribute
+                            $replacedAttribute = Attribute::sobstitute($attributeAndValue[0]);
+
+                            // If not exists returns false, so not considered.
+                            if (! $replacedAttribute) {
+                                return true;
+                            }
+
+                            $this->where($field, $replacedAttribute, $attributeAndValue[1]);
                         } else {
                             $this->where($field, '=', $value);
                         }
