@@ -2,6 +2,14 @@
 
 The Missing RESTFul API AutoFilters Provider for Laravel.
 
+Table of Contents
+=================
+
+* [Quick Start](#quick-start)
+* [Basic Filters](#basic-filters)
+* [Advanced Filters](#advanced-filters)
+* [Contribution](#contribution)
+
 ## Quick Start
 
 ### Install the Package.
@@ -45,7 +53,7 @@ In order to Filter, pass the parameters in the URI Querystring.
 
 And Done. So Sexy So Fresh!
 
-## Available Filters
+## Basic Filters
 
 #### Single Field Where
 
@@ -171,3 +179,203 @@ Multiple order by are supported, use the comma as separator.
   }
 ]
 ```
+
+## Advanced Filters
+
+#### Greater Than
+
+```php
+// http://localhost:8000/api/users?id=gt:4
+
+[
+  {
+    "id": 5,
+    "name": "Jazmyne Lang",
+    "email": "mozelle.bednar@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 6,
+    "name": "Matteo Feest",
+    "email": "pschroeder@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 7,
+    "name": "Tabitha Wiegand Jr.",
+    "email": "mayer.adrianna@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  }
+]
+```
+
+#### Greater Than Equal
+
+```php
+// http://localhost:8000/api/users?id=gte:4
+
+[
+  {
+    "id": 4,
+    "name": "Eleanora Harris",
+    "email": "beer.jazmyn@example.net",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 5,
+    "name": "Jazmyne Lang",
+    "email": "mozelle.bednar@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 6,
+    "name": "Matteo Feest",
+    "email": "pschroeder@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 7,
+    "name": "Tabitha Wiegand Jr.",
+    "email": "mayer.adrianna@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  }
+]
+```
+
+#### Less Than
+
+```php
+// http://localhost:8000/api/users?id=lt:4
+
+[
+  {
+    "id": 1,
+    "name": "Miss Damaris Medhurst PhD",
+    "email": "ttoy@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 2,
+    "name": "Ms. Sarina Volkman III",
+    "email": "twila.fahey@example.net",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 3,
+    "name": "Prof. Asha Hane",
+    "email": "aliza60@example.com",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  }
+]
+```
+
+#### Less Than Equal
+
+```php
+// http://localhost:8000/api/users?id=lte:4
+
+[
+  {
+    "id": 1,
+    "name": "Miss Damaris Medhurst PhD",
+    "email": "ttoy@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 2,
+    "name": "Ms. Sarina Volkman III",
+    "email": "twila.fahey@example.net",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 3,
+    "name": "Prof. Asha Hane",
+    "email": "aliza60@example.com",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 4,
+    "name": "Eleanora Harris",
+    "email": "beer.jazmyn@example.net",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  }
+]
+```
+
+#### Like & iLike
+
+NB: Currently iLike is not supported on MySQL.
+
+With the like attribute, the query search the full value passed as parameter.
+If you need to do search, be sure to add the percentage '%' to your values.
+
+```php
+// http://localhost:8000/api/users?name=like:%Mr%
+
+[
+  {
+    "id": 17,
+    "name": "Mrs. Verlie Cummerata",
+    "email": "vhessel@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 19,
+    "name": "Mr. Maynard Conn PhD",
+    "email": "idooley@example.com",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 26,
+    "name": "Mrs. Marcelle Cole IV",
+    "email": "gwyman@example.net",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:31.000000Z",
+    "updated_at": "2020-11-03T15:43:31.000000Z"
+  },
+  {
+    "id": 68,
+    "name": "Mrs. Helga Hansen",
+    "email": "meaghan08@example.org",
+    "email_verified_at": "2020-11-03T15:43:31.000000Z",
+    "created_at": "2020-11-03T15:43:32.000000Z",
+    "updated_at": "2020-11-03T15:43:32.000000Z"
+  }
+]
+```
+
+## Contribution
+
+If you have ideas, or improvements for this Project, please open a Pull Request.
